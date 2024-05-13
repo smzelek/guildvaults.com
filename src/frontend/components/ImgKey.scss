@@ -1,0 +1,65 @@
+@import 'src/frontend/mixins';
+
+.key {
+    text-shadow: -1px -1px 0 #000, 0 -1px 0 #000, 1px -1px 0 #000, 1px 0 0 #000, 1px 1px 0 #000, 0 1px 0 #000,
+        -1px 1px 0 #000, -1px 0 0 #000;
+    white-space: pre;
+
+    &--ilvl {
+        font-size: 18px;
+    }
+
+    &--track {
+        font-size: 14px;
+    }
+
+    &.key--timed.key--img {
+        border-color: greenyellow;
+    }
+
+    &--img {
+        font-size: 24px;
+        width: 36px;
+        height: 36px;
+        border: 1px solid black;
+        border-radius: 4px;
+        background-position: center;
+        background-size: cover;
+        margin: 2px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &.doti-fall {
+            background-image: url("/assets/doti-fall.jpg");
+        }
+
+        &.doti-rise {
+            background-image: url("/assets/doti-rise.jpg");
+        }
+
+        &.black-rook-hold {
+            background-image: url("/assets/black-rook-hold.jpg");
+        }
+
+        &.throne-of-the-tides {
+            background-image: url("/assets/throne-of-the-tides.jpg");
+        }
+
+        &.darkheart-thicket {
+            background-image: url("/assets/darkheart-thicket.jpg");
+        }
+
+        &.the-everbloom {
+            background-image: url("/assets/the-everbloom.jpg");
+        }
+
+        &.waycrest-manor {
+            background-image: url("/assets/waycrest-manor.jpg");
+        }
+
+        &.atal-dazar {
+            background-image: url("/assets/atal-dazar.jpg");
+        }
+    }
+}

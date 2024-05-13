@@ -1,0 +1,107 @@
+@import 'src/frontend/mixins';
+
+* {
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    background-color: #111;
+}
+
+body {
+    height: 100vh;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+#root {
+    display: contents;
+}
+
+main {
+    height: 100%;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    overflow-y: auto;
+    padding: 30px 30px 60px;
+}
+
+
+@include smaller-than(mobile-screen) {
+    body {
+        height: unset;
+    }
+
+    main {
+        padding: 0px 20px 100px;
+    }
+
+    #pokemon-team {
+        width: 100%;
+    }
+
+    #pokemon-team-chart {
+        width: 100%;
+
+        .team-card {
+            width: 100%;
+        }
+    }
+}
+
+
+.warrior {
+    color: #c79c6e;
+}
+
+.paladin {
+    color: #f58cba;
+}
+
+.hunter {
+    color: #abd473;
+}
+
+.rogue {
+    color: #fff569;
+}
+
+.priest {
+    color: #fff;
+}
+
+.death-knight {
+    color: #c41f3b;
+}
+
+.shaman {
+    color: #0070de;
+}
+
+.mage {
+    color: #69ccf0;
+}
+
+.warlock {
+    color: #9482c9;
+}
+
+.monk {
+    color: #00ff96;
+}
+
+.druid {
+    color: #ff7d0a;
+}
+
+.demon-hunter {
+    color: #a330c9;
+}
+
+.evoker {
+    color: #33937f;
+}

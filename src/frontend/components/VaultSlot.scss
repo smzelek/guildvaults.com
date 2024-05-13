@@ -1,0 +1,50 @@
+@import 'src/frontend/mixins';
+
+.vault-slot {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+
+    .slot-header {
+        align-items: center;
+        display: flex;
+    }
+
+    .slot-incomplete {
+        color: gray;
+        font-style: italic;
+        font-size: 14px;
+        text-shadow: none;
+    }
+
+    .key-tier {
+        display: flex;
+        min-height: 36px;
+        padding: 4px 0px;
+        flex-wrap: wrap;
+        flex-grow: 1;
+    }
+}
+
+@include smaller-than(mobile-screen) {
+    .vault-slot {
+        .key--track {
+            display: none;
+        }
+
+        .slot-incomplete--count {
+            white-space: pre;
+            padding-top: 2px;
+        }
+
+        .slot-incomplete--text {
+            display: none;
+            padding-top: 2px;
+        }
+
+        .key-tier {
+            display: none;
+        }
+    }
+}

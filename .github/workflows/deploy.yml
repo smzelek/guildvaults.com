@@ -1,0 +1,77 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  AWS_APP: guildvaults-com
+  NODE_VERSION: 20
+  BUILD_DIR: www/
+  CLOUDFLARE_ZONE: feef9715e11bac9657de1fc3a96bde9e
+
+jobs:
+  env:
+    runs-on: ubuntu-latest
+    outputs:
+      AWS_APP: ${{ env.AWS_APP }}
+      NODE_VERSION: ${{ env.NODE_VERSION }}
+      BUILD_DIR: ${{ env.BUILD_DIR }}
+      CLOUDFLARE_ZONE: ${{ env.CLOUDFLARE_ZONE }}
+    steps:
+      - run: echo ""
+
+  test: 
+    needs: [env]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Cache NPM
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ needs.env.outputs.NODE_VERSION }}
+          cache: 'npm'
+      - name: Install
+        run: npm ci
+      - name: Test
+        run: npm test
+        timeout-minutes: 5
+
+  build:
+    needs: [env, test]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Cache NPM
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ needs.env.outputs.NODE_VERSION }}
+          cache: 'npm'
+      - name: Install
+        run: |
+          npm ci
+          npm run build:app
+      - name: Upload app artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ needs.env.outputs.AWS_APP }}
+          path: ${{ needs.env.outputs.BUILD_DIR }}/*
+
+  deploy-app:
+    needs: [env, test, build]
+    uses: smzelek/aws-hosting/.github/workflows/deploy-app.yml@main
+    secrets: inherit
+    with:
+      aws-app: ${{ needs.env.outputs.AWS_APP }}
+      app-artifact: ${{ needs.env.outputs.AWS_APP }}
+      cloudflare-zone: ${{ needs.env.outputs.CLOUDFLARE_ZONE }}
+      
+  deploy-service:
+    needs: [env, test]
+    uses: smzelek/aws-hosting/.github/workflows/deploy-service.yml@main
+    secrets: inherit
+    with:
+      aws-app: ${{ needs.env.outputs.AWS_APP }}

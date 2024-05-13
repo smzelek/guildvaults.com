@@ -1,0 +1,306 @@
+@import 'src/frontend/mixins';
+
+.loading-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+
+    .loading-background {
+        width: 350px;
+        padding: 30px 20px;
+        background-color: #4f4b49;
+        color: $secondary;
+        font-weight: bold;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        font-family: "Unica One";
+        text-transform: uppercase;
+        font-size: 26px;
+        text-align: center;
+    }
+
+    .spinner {
+        margin: 20px 0;
+        background: radial-gradient(#673ab7, #bf0dc5 50%, #517357 70%);
+        border: 1px solid #585858;
+        background-color: black;
+        border-radius: 44px/62px;
+        box-shadow: 0px 0px 7px 6px #c778f1;
+        animation: hover 1.5s linear infinite;
+
+        &:before {
+            content: "";
+            display: block;
+            width: 50px;
+            height: 70px;
+            border: 4px solid #24f730;
+            border-radius: 44px/62px;
+            box-sizing: border-box;
+        }
+    }
+
+    @keyframes hover {
+        0% {
+            transform: translateY(-10px); // up
+        }
+
+        25% {
+            transform: translateY(0px);
+        }
+
+        50% {
+            transform: translateY(10px); // down
+        }
+
+        75% {
+            transform: translateY(0px);
+        }
+
+        100% {
+            transform: translateY(-10px); // up
+        }
+    }
+}
+
+.guild {
+    max-width: 900px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+    &__title {
+        flex-shrink: 0;
+        font-family: "Unica One", sans-serif;
+        font-weight: normal;
+        text-transform: uppercase;
+        color: $secondary;
+        margin: 0;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        margin-bottom: 5px;
+
+        &--name {
+            font-size: 30px;
+            font-weight: bold;
+            color: $guild;
+        }
+
+        .separator {
+            width: 10px;
+            display: inline-block;
+        }
+
+        &--realm {
+            font-size: 20px;
+        }
+    }
+}
+
+.roster {
+    padding: 20px;
+    padding-top: 10px;
+    background-color: #4f4b49;
+    height: 100%;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+
+    &__navigation {
+        font-family: "Cabin", sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 14px;
+        color: $secondary;
+        padding: 0px 0px 8px;
+
+        .spacer {
+            flex-grow: 1;
+        }
+
+        .period {
+            text-align: center;
+        }
+
+        .paginator {
+            background: none;
+            color: $primary;
+            border: 0;
+            padding: 0;
+            font-style: italic;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+            white-space: pre;
+            padding: 10px;
+            padding-top: 11px;
+
+            &.active {
+                color: gray;
+                cursor: not-allowed;
+
+                .paginator--text {
+                    text-decoration: none;
+                }
+
+                .paginator--arrow {
+                    visibility: hidden;
+                }
+            }
+
+            &--arrow {
+                padding-top: 1px;
+            }
+
+            &--text {
+                padding: 0px 2px;
+                text-decoration: underline;
+            }
+        }
+    }
+
+    &__scroll-wrapper {
+        display: grid;
+        grid-template-columns: min-content repeat(3, minmax(0px, max-content)) minmax(0px, auto);
+        overflow-y: auto;
+        height: 100%;
+
+        &::-webkit-scrollbar-track {
+            background: #2c2c2c;
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            background-clip: padding-box;
+            margin-top: 24px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: $primary;
+            border-radius: 9px;
+            border: 3px solid transparent;
+            background-clip: content-box;
+        }
+
+        &::-webkit-scrollbar-thumb:hover {
+            background-color: darken($primary, 10%);
+        }
+
+        &::-webkit-scrollbar {
+            width: 15px;
+        }
+    }
+}
+
+
+.row {
+    display: contents;
+
+    &:not(:last-child) .cell {
+        margin-bottom: 10px;
+    }
+
+    .cell {
+        color: white;
+        font-family: "Cabin", sans-serif;
+        background: #2b2b2b;
+        display: flex;
+        align-items: center;
+        padding: 5px 12px 5px 0px;
+
+        &--player {
+            span {
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                overflow: hidden;
+                font-weight: bold;
+                font-size: 18px;
+                text-shadow: -1px -1px 0 #000, 0 -1px 0 #000, 1px -1px 0 #000, 1px 0 0 #000, 1px 1px 0 #000, 0 1px 0 #000,
+                    -1px 1px 0 #000, -1px 0 0 #000;
+            }
+        }
+
+        &--checkbox {
+            padding: 0px 5px 2px 10px;
+        }
+    }
+}
+
+.header-row {
+    padding-bottom: 3px;
+    padding-right: 50px;
+    box-sizing: border-box;
+    color: $secondary;
+    font-family: "Cabin", sans-serif;
+    font-size: 18px;
+    border-bottom: 1px solid $secondary;
+    margin-bottom: 10px;
+    background-color: #4f4b49;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    position: sticky;
+    top: 0;
+
+    &--checkbox {
+        padding-right: 9px;
+    }
+}
+
+@include smaller-than(mobile-screen) {
+
+    .loading-container {
+        margin-top: 50px;
+    }
+
+    .guild {
+        padding: 10px;
+    }
+
+    .roster {
+        margin-top: 10px;
+    }
+
+    .header-row {
+        font-size: 16px;
+        padding: 0px;
+        padding-right: 20px;
+    }
+
+    .row {
+        .cell {
+            padding-right: 0px;
+            padding-left: 3px;
+        }
+
+        .cell--checkbox {
+            padding-left: 5px;
+        }
+
+        .cell--player {
+            padding-left: 3px;
+            padding-right: 5px;
+        }
+    }
+
+    .guild__title {
+        word-wrap: break-word;
+        overflow: unset;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        .separator {
+            display: none;
+        }
+    }
+}
