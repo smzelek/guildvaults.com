@@ -9,10 +9,7 @@ export const App = () => {
         {process.env.COMMIT_HASH}
       </span>
       <header>
-        <h1 className="title">Guild Vault Tracker
-        {process.env.COMMIT_HASH}
-        {process.env.API_URL}
-        </h1>
+        <h1 className="title">Guild Vault Tracker</h1>
       </header>
       <main>
         <GuildRoster guild='full-clear' realm='bleeding-hollow' />
