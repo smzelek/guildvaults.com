@@ -74,4 +74,5 @@ jobs:
     uses: smzelek/aws-hosting/.github/workflows/deploy-service.yml@main
     secrets: inherit
     with:
+      dockerfile: "./Dockerfile"
       aws-app: ${{ needs.env.outputs.AWS_APP }}
