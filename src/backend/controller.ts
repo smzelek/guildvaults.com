@@ -1,4 +1,4 @@
-import { GuildMember, Key } from "../models/backend";
+import { GuildMember } from "../models/backend";
 import { GuildVaultResponse, Player } from "../models/shared";
 import { dash_case_string } from "../models/types";
 import { logFunction, retry } from "../utils";

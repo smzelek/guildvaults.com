@@ -1,4 +1,4 @@
-import { DungeonCode } from "./shared";
+import { Key } from "./shared";
 import { formatted_string, dash_case_string, milliseconds_since_epoch_timestamp } from "./types";
 
 export interface Guild {
@@ -19,10 +19,4 @@ export interface PlayerKeystoneProfile {
     weekly_keys_done: Key[];
     prior_weekly_keys_done: Key[];
     last_updated: milliseconds_since_epoch_timestamp;
-}
-
-export interface Key {
-    dungeon_name: DungeonCode;
-    timed: boolean;
-    key_level: number;
 }

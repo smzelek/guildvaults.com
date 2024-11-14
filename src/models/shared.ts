@@ -1,7 +1,5 @@
 import { formatted_string, milliseconds_since_epoch_timestamp } from "./types";
 
-export type DungeonCode = "DHT" | "FALL" | "RISE" | "TOTT" | "EB" | "AD" | "WM" | "BRH";
-
 export interface GuildVaultResponse {
     guild_name: formatted_string;
     realm_name: formatted_string;
@@ -19,7 +17,8 @@ export interface Player {
 }
 
 export interface Key {
-    dungeon_name: DungeonCode;
+    dungeon: string;
+    icon: formatted_string;
     timed: boolean;
     key_level: number;
 }

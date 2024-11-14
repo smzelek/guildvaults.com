@@ -1,6 +1,6 @@
 import React from 'react';
 import { rewardForLevel, colorizeRewardLevel } from "../../utils";
-import { ImgKey } from './ImgKey';
+import { KeyImg } from './KeyImg';
 import './VaultSlot.scss';
 import { Key } from '../../models/shared';
 
@@ -40,7 +40,7 @@ export const VaultSlot = (props: { keys: Key[], tierStart: number, tierEnd: numb
     const keyTier = (() => {
         return (
             <div className="key-tier">
-                {slotKeys.map((k, i) => <ImgKey key={i} dungeon={k.dungeon_name} keyLevel={k.key_level} timed={k.timed}></ImgKey>)}
+                {slotKeys.map((k, i) => <KeyImg key={i} vaultKey={k} />)}
             </div>
         )
     })();
